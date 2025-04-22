@@ -8,7 +8,7 @@ import uuid
 app = FastAPI()
 
 # Initialize the Gradio Client
-client = Client("releaf-nineteen/nineteen_F19")
+client = Client("releaf-nineteen/nineteen_f_hhhh")
 
 @app.post("/predict")
 async def predict(image: UploadFile = File(...)):
