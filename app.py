@@ -14,7 +14,7 @@ diseasePredict = Client("releaf-nineteen/nineteen_PD")
 
 @app.post("/predictFlower19")
 async def predictFlower(image: UploadFile = File(...)):
-    return await predict(flowerPredict,"/predict",image=pil_image)
+    return await predict(flowerPredict19,"/predict",image=image)
 
 @app.post("/predictFlower100")
 async def predictFackness(image:UploadFile = File(...)):
@@ -43,7 +43,7 @@ async def predictFackness(image:UploadFile = File(...)):
 
 @app.post("/predictDisease")
 async def predict3(image:UploadFile = File(...)):
-    return await predict(diseasePredict,"/predict",image=pil_image)
+    return await predict(diseasePredict,"/predict",image=image)
 
 async def predict(client,api_name,image: UploadFile = File(...)):
     try:
