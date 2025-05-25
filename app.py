@@ -8,15 +8,15 @@ app = FastAPI()
 
 
 # Initialize the Gradio Client
-flowersClient = Client("releaf-nineteen/nineteen_f_hhhh")
-facknessClient = Client("releaf-nineteen/ninetynine99")
-diseaseClient = Client("releaf-nineteen/nineteen_D19")
+flowerPredict19 = Client("releaf-nineteen/nineteen_Pi10")
+flowerPredict100 = Client("releaf-nineteen/nineteen_releaf_")
+diseasePredict = Client("releaf-nineteen/nineteen_PD")
 
-@app.post("/predictFlower")
+@app.post("/predictFlower19")
 async def predictFlower(image: UploadFile = File(...)):
-    return await predict(flowersClient,"/predict",image=image)
+    return await predict(flowerPredict,"/predict",image=pil_image)
 
-@app.post("/predictFackness")
+@app.post("/predictFlower100")
 async def predictFackness(image:UploadFile = File(...)):
     try:
         # Generate a unique temporary filename
@@ -27,9 +27,9 @@ async def predictFackness(image:UploadFile = File(...)):
             shutil.copyfileobj(image.file, buffer)
 
         # Process the saved file with Gradio
-        result = facknessClient.predict(
-            img=handle_file(temp_filename),
-            api_name= "/process_image"
+        result = flowerPredict100.predict(
+            image=handle_file(temp_filename),
+            api_name= "/predict"
         )
 
         # Clean up the temporary file
@@ -43,7 +43,7 @@ async def predictFackness(image:UploadFile = File(...)):
 
 @app.post("/predictDisease")
 async def predict3(image:UploadFile = File(...)):
-    return await predict(diseaseClient,"/predict",image=image)
+    return await predict(diseasePredict,"/predict",image=pil_image)
 
 async def predict(client,api_name,image: UploadFile = File(...)):
     try:
